@@ -40,8 +40,10 @@ jobs:
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
         scanners: sast
+        incremental: false
         extra_certificates: .
         break_build: true
+        preset: 'Checkmarx Default'
         bug_tracker: WAIT
         sca_api_url: ${{ secrets.SCA_API_URL }}
         sca_app_url: ${{ secrets.SCA_APP_URL }}
