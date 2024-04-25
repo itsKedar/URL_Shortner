@@ -30,7 +30,7 @@ jobs:
 
     # Add Maven bin directory to PATH
     - name: Add Maven to PATH
-      run: echo "::add-path::/github/workspace/maven/bin"
+      run: echo "/github/workspace/maven/bin" >> $GITHUB_PATH
         
     - name: Checkmarx CxFlow Action
       uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.9
