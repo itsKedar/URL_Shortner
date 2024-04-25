@@ -21,15 +21,11 @@ jobs:
       security-events: write
     runs-on: ubuntu-latest
 
+    container:
+      image: maven:3.8.4
+    
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 17 and maven
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'microsoft'
-        java-version: '17'
-        maven-version: '3.8.4'
-        
+    - uses: actions/checkout@v2 
     - name: Checkmarx CxFlow Action
       uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.9
       env:
