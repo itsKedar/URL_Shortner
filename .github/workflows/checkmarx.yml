@@ -23,17 +23,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 17
+    - name: Set up JDK 17 and maven
       uses: actions/setup-java@v2
       with:
         distribution: 'microsoft'
         java-version: '17'
-
-    - name: Setup Maven
-      uses: actions/setup-java@v2
-      with:
-        java-version: '17'
         maven-version: '3.8.4'
+        
     - name: Checkmarx CxFlow Action
       uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.9
       env:
