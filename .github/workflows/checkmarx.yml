@@ -25,8 +25,8 @@ jobs:
     - uses: actions/checkout@v2 
     - name: Download and extract Maven
       run: |
-        mkdir -p /github/workspace/maven
-        curl -fsSL https://apache.osuosl.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz | tar -xzC /github/workspace/maven --strip-components=1
+        sudo mkdir -p /github/workspace/maven
+        sudo curl -fsSL https://apache.osuosl.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz | tar -xzC /github/workspace/maven --strip-components=1
 
     # Add Maven bin directory to PATH
     - name: Add Maven to PATH
