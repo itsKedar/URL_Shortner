@@ -33,7 +33,7 @@ jobs:
       run: echo "/github/workspace/maven/bin" >> $GITHUB_PATH
         
     - name: Checkmarx CxFlow Action
-      uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.9
+      uses: itsKedar/checkmarx-cxflow-github-action@1.1.2
       env:
         SCA_SCARESOLVERADDPARAMETERS_CUSTOM-PARAMETER : "--gradle-parameters=-Paws.codeartifact.username=${{ github.repository_owner }} -Paws.codeartifact.token=${{ github.repository_owner }}"
         SCA_SCARESOLVERADDPARAMETERS_LOG-LEVEL : Debug
