@@ -23,20 +23,12 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2 
-    - name: Download and extract Maven
-      run: |
-        sudo mkdir -p /github/workspace/maven
-        sudo curl -fsSL https://dlcdn.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz | sudo tar -xzC /github/workspace/maven --strip-components=1
-
-    # Add Maven bin directory to PATH
-    - name: Add Maven to PATH
-      run: echo "/github/workspace/maven/bin" >> $GITHUB_PATH
         
     - name: Checkmarx CxFlow Action
       uses: itsKedar/checkmarx-cxflow-github-action@1.1.2
       env:
-        SCA_SCARESOLVERADDPARAMETERS_CUSTOM-PARAMETER : "--gradle-parameters=-Paws.codeartifact.username=${{ github.repository_owner }} -Paws.codeartifact.token=${{ github.repository_owner }}"
-        SCA_SCARESOLVERADDPARAMETERS_LOG-LEVEL : Debug
+        #SCA_SCARESOLVERADDPARAMETERS_CUSTOM-PARAMETER : "--gradle-parameters=-Paws.codeartifact.username=${{ github.repository_owner }} -Paws.codeartifact.token=${{ github.repository_owner }}"
+        #SCA_SCARESOLVERADDPARAMETERS_LOG-LEVEL : Debug
         JIRA_FIELDS_0_JIRA_DEFAULT_VALUE : APPSEC-2371
         JIRA_FIELDS_0_JIRA_FIELD_NAME : "Epic Link"
         JIRA_FIELDS_0_JIRA_FIELD_TYPE : text
@@ -48,7 +40,7 @@ jobs:
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
-        scanners: sca
+        scanners: sca,sast
         incremental: false
         extra_certificates: .
         break_build: true
@@ -69,4 +61,4 @@ jobs:
         jira_close_transition : 'Done'
         jira_open_status : 'Selected for Development,In Progress'
         jira_closed_status : 'Done'
-        params: '--sca.enable-sca-resolver=true --namespace=${{ github.repository_owner }} --checkmarx.settings-override=true --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG --cx-flow.filterSeverity --cx-flow.filterCategory'
+        params: '--namespace=${{ github.repository_owner }} --checkmarx.settings-override=true --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG --cx-flow.filterSeverity --cx-flow.filterCategory'
