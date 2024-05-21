@@ -24,7 +24,7 @@ public class UrlController {
 	@RequestMapping(value ="/", method= RequestMethod.GET)
 	public String home()
 	{
-		return "home.jsp";
+		return "home";
 		
 	}
 	
@@ -36,16 +36,15 @@ public class UrlController {
 		if(urlValidator.isValid(urldata.getFullUrl()) )
 		{
 			String id =Hashing.murmur3_32().hashString(urldata.getFullUrl(),StandardCharsets.UTF_8).toString();
-			urldata.setShortUrl(id);
+			urldata.setShortUrl("user/"+id);
 		}	
 		urlRepo.save(urldata);
-		return "home.jsp";
+		return "home";
 	}
 	
-	@RequestMapping("/{id}")
-	public RedirectView  getUrl(@PathVariable String id)
-	{
-		UrlData urldata = urlRepo.findById(id).orElse(new UrlData());	
+	@RequestMapping("user/{id}")
+	public RedirectView  getUrl(@PathVariable String id) throws Exception {
+		UrlData urldata = urlRepo.findById("user/"+id).orElseThrow(Exception::new);
 		RedirectView redirectView = new RedirectView();
 		String fullname = urldata.getFullUrl();
 	    redirectView.setUrl(fullname);
