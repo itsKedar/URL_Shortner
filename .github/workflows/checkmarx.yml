@@ -40,6 +40,6 @@ jobs:
         CHECKMARX_CLIENT_SECERT :  ${{ secrets.CHECKMARX_CLIENT_SECRET }}
         CXFLOW_ENABLED_VULNERABILITY_SCANNERS : SAST
         CXFLOW_BUGTRACKER : WAIT
-      run: docker run --entrypoint ./entrypoint.sh -e CHECKMARX_BASE_URL -e CHECKMARX_PASSWORD -e CHECKMARX_USERNAME -e CHECKMARX_TEAM -e CHECKMARX_CLIENT_SECERT -e CXFLOW_ENABLED_VULNERABILITY_SCANNERS -e CXFLOW_BUGTRACKER itskedar/mycxflow:github_action --scan --SHA=$GITHUB_SHA  --github.api-url="${GITHUB_API_URL}/repos/" --cx-project="${{ github.repository }}-PR" --f=. --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG 
+      run: docker run --entrypoint entrypoint.sh -e CHECKMARX_BASE_URL -e CHECKMARX_PASSWORD -e CHECKMARX_USERNAME -e CHECKMARX_TEAM -e CHECKMARX_CLIENT_SECERT -e CXFLOW_ENABLED_VULNERABILITY_SCANNERS -e CXFLOW_BUGTRACKER itskedar/mycxflow:github_action --scan --SHA=$GITHUB_SHA  --github.api-url="${GITHUB_API_URL}/repos/" --cx-project="${{ github.repository }}-PR" --f=. --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG 
 
       
