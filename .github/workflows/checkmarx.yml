@@ -36,7 +36,7 @@ jobs:
         #CXFLOW_VERSION : github_action
       with:
         #cxflow_version: github_action
-        java_opts: "itskedar/mycxflow:github_action"
+        java_opts: "itskedar/mycxflow:198173"
         project: ${{ github.repository }}-PR
         team: ${{ secrets.CHECKMARX_TEAMS }}
         checkmarx_url: ${{ secrets.CHECKMARX_URL }}
@@ -45,7 +45,7 @@ jobs:
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
         scanners: sca
         incremental: false
-        extra_certificates: .
+        #extra_certificates: .
         break_build: true
         preset: 'Checkmarx Default'
         bug_tracker: WAIT
