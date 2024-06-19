@@ -25,7 +25,6 @@ jobs:
     - uses: actions/checkout@v2
         
     - name: Checkmarx CxFlow Action
-      run: docker run itskedar/mycxflow:github_action --scan --SHA=$GITHUB_SHA  --github.api-url="${GITHUB_API_URL}/repos/" --cx-project="${{ github.repository }}-PR" --f=. --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG 
       env:
         #SCA_SCARESOLVERADDPARAMETERS_CUSTOM-PARAMETER : "--gradle-parameters=-Paws.codeartifact.username=${{ github.repository_owner }} -Paws.codeartifact.token=${{ github.repository_owner }}"
         #SCA_SCARESOLVERADDPARAMETERS_LOG-LEVEL : Debug
@@ -41,4 +40,6 @@ jobs:
         CHECKMARX_CLIENT_SECERT :  ${{ secrets.CHECKMARX_CLIENT_SECRET }}
         CXFLOW_ENABLED_VULNERABILITY_SCANNERS : SAST
         CXFLOW_BUGTRACKER : WAIT
+      run: docker run itskedar/mycxflow:github_action --scan --SHA=$GITHUB_SHA  --github.api-url="${GITHUB_API_URL}/repos/" --cx-project="${{ github.repository }}-PR" --f=. --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG 
+
       
