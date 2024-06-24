@@ -1,6 +1,7 @@
 # URL Shorter
 Basic Url Shorter project made in Spring Boot. 
 
+
 # Quick Start
 
 ### prerequisites
