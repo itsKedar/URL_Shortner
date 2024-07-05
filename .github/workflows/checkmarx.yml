@@ -25,7 +25,7 @@ jobs:
     - uses: actions/checkout@v2
         
     - name: Checkmarx CxFlow Action
-      uses: itsKedar/checkmarx-cxflow-github-action@5932b613ddf7ffa57798383874ed9450a6b078ee
+      uses: itsKedar/checkmarx-cxflow-github-action@6e89bf95854ab4ac0cf3276ffe62f0e794561ace
       env:
         #SCA_SCARESOLVERADDPARAMETERS_CUSTOM-PARAMETER : "--gradle-parameters=-Paws.codeartifact.username=${{ github.repository_owner }} -Paws.codeartifact.token=${{ github.repository_owner }}"
         #SCA_SCARESOLVERADDPARAMETERS_LOG-LEVEL : Debug
