@@ -33,7 +33,7 @@ jobs:
         JIRA_FIELDS_0_JIRA_FIELD_NAME : "Epic Link"
         JIRA_FIELDS_0_JIRA_FIELD_TYPE : text
         JIRA_FIELDS_0_TYPE : static
-        PROJECT_CUSTOM_FIELDS : "test : kedar bhujade"
+        PROJECT_CUSTOM_FIELDS : '"test":"kedar bhujade"'
       with:
         project: ${{ github.repository }}-PR
         team: ${{ secrets.CHECKMARX_TEAMS }}
@@ -43,7 +43,7 @@ jobs:
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
         scanners: sast
         incremental: false
-        #extra_certificates: .
+        extra_certificates: .
         break_build: true
         preset: 'Checkmarx Default'
         bug_tracker: WAIT
