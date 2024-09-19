@@ -46,7 +46,7 @@ jobs:
         extra_certificates: .
         break_build: true
         preset: 'Checkmarx Default'
-        project_custom_field: '"kedar":"bhujade 1"'
+        project_custom_field: 'kedar:"bhujade 1"'
         bug_tracker: WAIT
         sca_api_url: ${{ secrets.SCA_API_URL }}
         sca_app_url: ${{ secrets.SCA_APP_URL }}
