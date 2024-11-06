@@ -46,7 +46,7 @@ jobs:
         #extra_certificates: .
         break_build: true
         preset: 'Checkmarx Default'
-        bug_tracker: GITHUB
+        bug_tracker: GitHub
         sca_api_url: ${{ secrets.SCA_API_URL }}
         sca_app_url: ${{ secrets.SCA_APP_URL }}
         sca_access_control_url: ${{ secrets.SCA_ACCESS_CONTROL_URL }}
