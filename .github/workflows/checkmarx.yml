@@ -45,6 +45,8 @@ jobs:
         incremental: false
         #extra_certificates: .
         break_build: true
+        scan_custom_field_key: "test"
+        scan_custom_field_value: "test"
         preset: 'Checkmarx Default'
         bug_tracker: GitHub
         sca_api_url: ${{ secrets.SCA_API_URL }}
