@@ -5,8 +5,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  schedule:
-    - cron: '39 15 * * 1'
 
 permissions:
   contents: read
@@ -25,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
         
     - name: Checkmarx CxFlow Action
-      uses: itsKedar/checkmarx-cxflow-github-action@a1b5819d73ce07f251148e89b37e615cdef67199
+      uses: checkmarx-ts/checkmarx-cxflow-github-action@v2.2
       env:
         #SCA_SCARESOLVERADDPARAMETERS_CUSTOM-PARAMETER : "--gradle-parameters=-Paws.codeartifact.username=${{ github.repository_owner }} -Paws.codeartifact.token=${{ github.repository_owner }}"
         #SCA_SCARESOLVERADDPARAMETERS_LOG-LEVEL : Debug
@@ -64,4 +62,4 @@ jobs:
         jira_close_transition : 'Done'
         jira_open_status : 'Selected for Development,In Progress'
         jira_closed_status : 'Done'
-        params: '--github --checkmarx.settings-override=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG'
+        params: '--checkmarx.cx-branch=true --github --checkmarx.settings-override=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG'
