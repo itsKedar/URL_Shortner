@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
         
     - name: Checkmarx CxFlow Action
-      uses: CxDrake/checkmarx-cxflow-github-action@01153b658f969264711f747697ab809c4f3f1a82
+      uses: CxDrake/checkmarx-cxflow-github-action@016159e16d2179b6e5e98c42dd38a6f23fc3c489
       env:
         CXFLOW_PROJECTCUSTOMFIELD : "git:git test,kedar:bhujade,test:test1"
       with:
