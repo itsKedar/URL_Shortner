@@ -33,7 +33,7 @@ jobs:
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
-        scanners: sast
+        scanners: sca
         incremental: false
         #extra_certificates: .
         break_build: true
