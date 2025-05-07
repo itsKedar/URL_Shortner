@@ -24,7 +24,7 @@ jobs:
         
     - name: Download CxFlow JAR
       run: |
-          Invoke-WebRequest -Uri "https://github.com/checkmarx-ltd/cx-flow/releases/download/1.7.08/cx-flow-1.7.08.jar" -OutFile "cxflow.jar"
+          powershell -ExecutionPolicy Bypass -Command Invoke-WebRequest -Uri "https://github.com/checkmarx-ltd/cx-flow/releases/download/1.7.08/cx-flow-1.7.08.jar" -OutFile "cxflow.jar"
 
     - name: Run CxFlow Scan
       run: |
