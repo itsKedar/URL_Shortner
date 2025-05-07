@@ -22,13 +22,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
         
-    - name: Download CxFlow JAR
-      run: |
-          powershell -ExecutionPolicy Bypass -Command Invoke-WebRequest -Uri "https://github.com/checkmarx-ltd/cx-flow/releases/download/1.7.08/cx-flow-1.7.08.jar" -OutFile "cxflow.jar"
-
     - name: Run CxFlow Scan
       run: |
-          java -jar cxflow.jar \
+          java -jar "C:\Cx-Flow\Jar\cx-flow.1.7.08.jar" \
             --scan \
             --repo-url=https://github.com/${{ github.repository }} \
             --rep-name=${{ github.event.repository.name }} \
