@@ -17,13 +17,13 @@ jobs:
       issues: write
       pull-requests: write
       security-events: write
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     steps:
     - uses: actions/checkout@v2
         
     - name: Checkmarx CxFlow Action
-      uses: CxDrake/checkmarx-cxflow-github-action@d68cb24594a405c9a2601e514f6434b527a08984
+      uses: checkmarx-ts/checkmarx-cxflow-github-action@v2.3
       env:
         CXFLOW_PROJECTCUSTOMFIELD : "git:git test,kedar:bhujade,test:test1"
       with:
