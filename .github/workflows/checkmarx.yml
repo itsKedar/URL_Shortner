@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Get CxFLow
       run: |
-          wget "https://github.com/checkmarx-ltd/cx-flow/releases/download/1.7.08/cx-flow-1.7.08.jar"
+           wget -O ./cx-flow.jar "https://github.com/checkmarx-ltd/cx-flow/releases/download/1.7.08/cx-flow-1.7.08.jar"
         
     - name: Run CxFlow Scan
       run: |
