@@ -1,30 +1,60 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This is a basic workflow to help you get started with Using Checkmarx CxFlow Action
+
 name: CxFlow
 
 on:
   push:
     branches: [ master ]
   pull_request:
+    # The branches below must be a subset of the branches above
     branches: [ master ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel - this job is specifically configured to use the Checkmarx CxFlow Action
 permissions:
   contents: read
 
 jobs:
+  # This workflow contains a single job called "build"
   build:
-    name: CHECKMARX
+    # The type of runner that the job will run on - Ubuntu is required as Docker is leveraged for the action
     permissions:
-      contents: read
-      issues: write
-      pull-requests: write
-      security-events: write
-    runs-on: self-hosted
-    
+      contents: read # for actions/checkout to fetch code
+      issues: write # for checkmarx-ts/checkmarx-cxflow-github-action to write feedback to github issues
+      pull-requests: write # for checkmarx-ts/checkmarx-cxflow-github-action to write feedback to PR
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+    runs-on: ubuntu-latest
+
+    # Steps require - checkout code, run CxFlow Action, Upload SARIF report (optional)
     steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: Get CxFLow
-      run: |
-           wget -O ./cx-flow.jar "https://github.com/checkmarx-ltd/cx-flow/releases/download/1.7.08/cx-flow-1.7.08.jar"
-        
-    - name: Run CxFlow Scan
-      run: |
-        java -jar cx-flow-1.7.08.jar --scan --github --repo-url=https://github.com/${{ github.repository }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --namespace=${{ github.repository_owner }} --cx-project=${{ github.event.repository.name }} --bug-tracker=WAIT --sca.appUrl=${{ secrets.SCA_APP_URL }} --sca.apiUrl=${{ secrets.SCA_API_URL }} --sca.accessControlUrl=${{ secrets.SCA_ACCESS_CONTROL_URL }} --sca.tenant=${{  secrets.SCA_TENANT }} --sca.username=${{ secrets.SCA_USERNAME }} --sca.password=${{ secrets.SCA_PASSWORD }} --cxflow.enabled-vulnerability-scanners="sca" --logging.level.com.checkmarx.*=DEBUG
+    # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
+    - name: Checkmarx CxFlow Action
+      uses: cx-ked-bhu/checkmarx-cxflow-github-action@d68cb24594a405c9a2601e514f6434b527a08984
+      with:
+        project: ${{ github.repository }}-PR
+        team: ${{ secrets.CHECKMARX_TEAMS }}
+        checkmarx_url: ${{ secrets.CHECKMARX_URL }}
+        checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
+        checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
+        checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
+        #bug_tracker : GITHUBPULL
+        scanners: sca
+        break_build : true
+        sca_api_url: ${{ secrets.SCA_API_URL }}
+        sca_app_url: ${{ secrets.SCA_APP_URL }}
+        sca_access_control_url: ${{ secrets.SCA_ACCESS_CONTROL_URL }}
+        sca_tenant: ${{  secrets.SCA_TENANT }}
+        sca_username: ${{ secrets.SCA_USERNAME }}
+        sca_password: ${{ secrets.SCA_PASSWORD }}
+        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --repo=${{ github.event.repository.name }} --branch=${{ github.ref }} --merge-id=${{ github.event.number }}
+    # Upload the Report for CodeQL/Security Alerts
+    #- name: Upload SARIF file
+      #uses: github/codeql-action/upload-sarif@v2
+      #with:
+        #sarif_file: cx.sarif
