@@ -45,7 +45,7 @@ jobs:
       - name : docker version 
         run: |
           echo "Ked_1154118" | docker login docker.io --username itskedar --password-stdin 
-          
+          docker pull itskedar/url_shorter:v1.0
 
           
       - name :  Checkout repository
