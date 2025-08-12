@@ -50,7 +50,7 @@ jobs:
                 "auth": "'$(echo -n "itskedar:dckr_pat_EIzjTgfnGusaY2oGKF6vbyaNA3w" | base64)'"
               }
             }
-          }' > containers/auth.json
+          }' >  /github/home/.config/containers/auth.json
  
       - name: Show contents (for debug)
         run: cat containers/auth.json
