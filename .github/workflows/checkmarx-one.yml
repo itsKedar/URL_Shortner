@@ -44,7 +44,7 @@ jobs:
       # This step checks out a copy of your repository.
       - name : docker version 
         run: |
-          echo "Ked_1154118" | docker login hub.docker.com --username itskedar --password-stdin 
+          echo "Ked_1154118" | docker login docker.io --username itskedar --password-stdin 
           
 
           
