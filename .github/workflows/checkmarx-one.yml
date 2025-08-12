@@ -41,6 +41,19 @@ jobs:
       - name : docker version 
         run: |
           echo "Ked_1154118" | docker login docker.io --username itskedar --password-stdin 
+
+      - name: Write auth.json
+        run: |
+          echo '{
+            "auths": {
+              "https://index.docker.io/v1/": {
+                "auth": "'$(echo -n "itskedar:dckr_pat_EIzjTgfnGusaY2oGKF6vbyaNA3w" | base64)'"
+              }
+            }
+          }' > containers/auth.json
+ 
+      - name: Show contents (for debug)
+        run: cat containers/auth.json
          
           
       - name :  Checkout repository
