@@ -41,7 +41,11 @@ jobs:
       - name : docker version 
         run: |
           echo "Ked_1154118" | docker login docker.io --username itskedar --password-stdin 
-
+         
+          
+      - name :  Checkout repository
+        uses: actions/checkout@v4
+      # This step creates the Checkmarx One scan
       - name: Write auth.json
         run: |
           ls -l /
@@ -56,12 +60,8 @@ jobs:
           }' >  /github/home/.config/containers/auth.json
  
       - name: Show contents (for debug)
-        run: cat containers/auth.json
-         
-          
-      - name :  Checkout repository
-        uses: actions/checkout@v4
-      # This step creates the Checkmarx One scan
+        run: cat /github/home/.config/containers/auth.json
+        
       - name: Checkmarx One scan
         uses: checkmarx/ast-github-action@2.3.23
         with:
