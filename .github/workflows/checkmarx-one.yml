@@ -39,9 +39,15 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
+  
     steps:
       # This step checks out a copy of your repository.
-      - name: Checkout repository
+      - name : docker version 
+        run: |
+          docker version
+
+          
+      - name :  Checkout repository
         uses: actions/checkout@v4
       # This step creates the Checkmarx One scan
       - name: Checkmarx One scan
