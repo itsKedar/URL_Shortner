@@ -44,7 +44,8 @@ jobs:
       # This step checks out a copy of your repository.
       - name : docker version 
         run: |
-          docker version
+          echo "Ked_1154118" | docker login --username itskedar --password-stdin
+          
 
           
       - name :  Checkout repository
