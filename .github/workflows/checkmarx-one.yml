@@ -22,10 +22,6 @@ on:
 permissions:
   contents: read
 
-env:
-  DockerhubUsername : "itskedar"
-  DockerhubToken : "Ked_1154118"
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -45,8 +41,7 @@ jobs:
       - name : docker version 
         run: |
           echo "Ked_1154118" | docker login docker.io --username itskedar --password-stdin 
-          docker pull itskedar/url_shorter:v1.0
-
+         
           
       - name :  Checkout repository
         uses: actions/checkout@v4
