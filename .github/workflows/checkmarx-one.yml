@@ -44,6 +44,7 @@ jobs:
 
       - name: Write auth.json
         run: |
+          ls -l /
           mkdir -p /github/home/.config/containers
           touch /github/home/.config/containers/auth.json
           echo '{
