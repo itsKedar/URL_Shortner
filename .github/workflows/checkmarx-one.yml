@@ -38,9 +38,9 @@ jobs:
   
     steps:
       # This step checks out a copy of your repository.
-      - name : docker version 
-        run: |
-          echo "Ked_1154118" | docker login docker.io --username itskedar --password-stdin 
+      # - name : docker version 
+      #   run: |
+      #     echo "Ked_1154118" | docker login docker.io --username itskedar --password-stdin 
          
           
       - name :  Checkout repository
@@ -48,19 +48,16 @@ jobs:
       # This step creates the Checkmarx One scan
       - name: Write auth.json
         run: |
-          ls -l /
-          mkdir -p /github/home/.config/containers
-          touch /github/home/.config/containers/auth.json
           echo '{
             "auths": {
               "https://index.docker.io/v1/": {
                 "auth": "'$(echo -n "itskedar:dckr_pat_EIzjTgfnGusaY2oGKF6vbyaNA3w" | base64)'"
               }
             }
-          }' >  /github/home/.config/containers/auth.json
+          }' > ~/.docker/config.json
  
       - name: Show contents (for debug)
-        run: cat /github/home/.config/containers/auth.json
+        run: cat ~/.docker/config.json
         
       - name: Checkmarx One scan
         uses: checkmarx/ast-github-action@2.3.23
