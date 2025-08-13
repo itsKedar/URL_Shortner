@@ -37,30 +37,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
   
     steps:
-      # This step checks out a copy of your repository.
-      # - name : docker version 
-      #   run: |
-      #     echo "Ked_1154118" | docker login docker.io --username itskedar --password-stdin 
-         
-          
       - name :  Checkout repository
         uses: actions/checkout@v4
-      # This step creates the Checkmarx One scan
-      - name: Write auth.json
-        run: |
-          echo '{
-            "auths": {
-              "https://index.docker.io/v1/": {
-                "auth": "'$(echo -n "itskedar:dckr_pat_EIzjTgfnGusaY2oGKF6vbyaNA3w" | base64)'"
-              }
-            }
-          }' > ~/.docker/config.json
- 
-      - name: Show contents (for debug)
-        run: cat ~/.docker/config.json
-        
+
       - name: Checkmarx One scan
-        uses: checkmarx/ast-github-action@2.3.23
+        uses: cx-ked-bhu/ast-github-action@78d9475bdad697685608ddc8a3b50338601fe5c3
+        env:
+          REGISTRIES: "docker.io"
+          USERNAME_DOCKER_IO: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD_DOCKER_IO: ${{ secrets.DOCKER_PASSWORD }}
         with:
           base_uri: https://eu.ast.checkmarx.net  # This should be replaced by your base uri for Checkmarx One
           cx_client_id: ${{ secrets.CX_CLIENT_ID }} # This should be created within your Checkmarx One account : https://checkmarx.com/resource/documents/en/34965-118315-authentication-for-checkmarx-one-cli.html#UUID-a4e31a96-1f36-6293-e95a-97b4b9189060_UUID-4123a2ff-32d0-2287-8dd2-3c36947f675e
