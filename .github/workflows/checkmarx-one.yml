@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Checkmarx One scan
-        uses: cx-ked-bhu/ast-github-action@78d9475bdad697685608ddc8a3b50338601fe5c3
+        uses: cx-ked-bhu/ast-github-action@1534442caeb645ef85f41d78d708f7c4f8e6579a
         env:
           REGISTRIES: "cxoneclouenginestest170625-aagfgjf2efgbbxck.azurecr.io"
           #USERNAME_DOCKER_IO: ${{ secrets.DOCKER_USERNAME }}
