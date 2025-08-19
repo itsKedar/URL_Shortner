@@ -42,7 +42,7 @@ jobs:
 
       - name: Checkmarx One scan
         uses: cx-ked-bhu/ast-github-action@1534442caeb645ef85f41d78d708f7c4f8e6579a
-        env:
+        #env:
           #REGISTRIES: "cxoneclouenginestest170625-aagfgjf2efgbbxck.azurecr.io"
           #USERNAME_DOCKER_IO: ${{ secrets.DOCKER_USERNAME }}
           #PASSWORD_DOCKER_IO: ${{ secrets.DOCKER_PASSWORD }}
