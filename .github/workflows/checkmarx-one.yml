@@ -42,20 +42,20 @@ jobs:
 
       - name: Checkmarx One scan
         uses: cx-ked-bhu/ast-github-action@1534442caeb645ef85f41d78d708f7c4f8e6579a
-        #env:
-          #REGISTRIES: "cxoneclouenginestest170625-aagfgjf2efgbbxck.azurecr.io"
+        env:
+          REGISTRIES: "quay.io"
           #USERNAME_DOCKER_IO: ${{ secrets.DOCKER_USERNAME }}
           #PASSWORD_DOCKER_IO: ${{ secrets.DOCKER_PASSWORD }}
           #USERNAME_CXONECLOUENGINESTEST170625_AAGFGJF2EFGBBXCK_AZURECR_IO: ${{ secrets.ACR_USERNAME }}
           #PASSWORD_CXONECLOUENGINESTEST170625_AAGFGJF2EFGBBXCK_AZURECR_IO: ${{ secrets.ACR_PASSWORD }}
-          #USERNAME_QUAY_IO: ${{ secrets.QUAY_USERNAME }}
-         # PASSWORD_QUAY_IO: ${{ secrets.QUAY_PASSWORD }}
+          USERNAME_QUAY_IO: ${{ secrets.QUAY_USERNAME }}
+          PASSWORD_QUAY_IO: ${{ secrets.QUAY_PASSWORD }}
         with:
           base_uri: https://eu.ast.checkmarx.net  # This should be replaced by your base uri for Checkmarx One
           cx_client_id: ${{ secrets.CX_CLIENT_ID }} # This should be created within your Checkmarx One account : https://checkmarx.com/resource/documents/en/34965-118315-authentication-for-checkmarx-one-cli.html#UUID-a4e31a96-1f36-6293-e95a-97b4b9189060_UUID-4123a2ff-32d0-2287-8dd2-3c36947f675e
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }} # This should be created within your Checkmarx One account : https://checkmarx.com/resource/documents/en/34965-118315-authentication-for-checkmarx-one-cli.html#UUID-a4e31a96-1f36-6293-e95a-97b4b9189060_UUID-4123a2ff-32d0-2287-8dd2-3c36947f675e
           cx_tenant: ${{ secrets.CX_TENANT }} # This should be replaced by your tenant for Checkmarx One
-          additional_params: --scan-types container-security --container-images "cxoneclouenginestest170625-aagfgjf2efgbbxck.azurecr.io/spinel-mysql8:multiarch" --debug
+          additional_params: --scan-types container-security --container-images "quay.io/shaked_karta/spinel-python-bookworm:multiarch" --containers-local-resolution --debug
       # - name: Upload SARIF file
       #   uses: github/codeql-action/upload-sarif@v3
       #   with:
