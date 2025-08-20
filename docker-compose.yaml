@@ -5,5 +5,5 @@ services:
   quay:
     image: 'quay.io/shaked_karta/spinel-python-bookworm:multiarch'
 
-  docker:
-	  image: 'itskedar/url_shorter:v1.0'
+  test:
+    image: 'itskedar/url_shorter:v1.0'
