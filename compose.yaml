@@ -1,0 +1,9 @@
+services:
+  acr:
+    image: 'cxoneclouenginestest170625-aagfgjf2efgbbxck.azurecr.io/spinel-mysql8:multiarch'
+
+  quay:
+    image: 'quay.io/shaked_karta/spinel-python-bookworm:multiarch'
+
+  docker:
+	  image: 'itskedar/url_shorter:v1.0'
