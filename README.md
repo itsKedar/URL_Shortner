@@ -18,3 +18,4 @@ docker run -p 8080:8080 itskedar/url_shorter:v1.0
 ```
 Success. url_shorter is now available on http://localhost:8080*
 
+
