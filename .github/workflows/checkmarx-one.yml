@@ -26,7 +26,6 @@ jobs:
           additional_params: >
             --debug
             --report-format sarif
-            --output-file cx_result.sarif
             --scs-repo-url https://github.com/${{ github.repository }}
             --scs-repo-token ${{ secrets.GIT_PUSH_TOKEN }}
             --sca-exploitable-path true
