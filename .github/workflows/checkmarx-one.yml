@@ -18,26 +18,12 @@ jobs:
       - name: Run Checkmarx One Scan
         uses: checkmarx/ast-github-action@main
         with:
-          project_name: carvalhal/PedroPHPWebGoat
+          project_name: URL_Shortner
           cx_tenant: ${{ secrets.CX_TENANT }}
           base_uri: https://eu.ast.checkmarx.net/
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           additional_params: >
             --debug
-            --report-format sarif
-            --scs-repo-url https://github.com/${{ github.repository }}
-            --scs-repo-token ${{ secrets.GIT_PUSH_TOKEN }}
-            --sca-exploitable-path true
 
-      - name: Upload SARIF report as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: cx_result.sarif
-          path: cx_result.sarif
-
-      - name: Upload to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: cx_result.sarif
  
