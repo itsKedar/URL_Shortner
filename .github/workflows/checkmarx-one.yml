@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: [ master, pr-test ]    
 permissions:
   actions: read
   contents: read
