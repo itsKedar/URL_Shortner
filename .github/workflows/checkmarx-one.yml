@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Checkmarx One Scan
-        uses: cx-kedar-bhujade/ast-github-action@ab82315cb1fd5146acc192f0cc6780e7b531fc75
+        uses: cx-kedar-bhujade/ast-github-action@c119d73e3da078f762c2eeb86bb16e812f9fd6b0
         with:
           project_name: URL_Shortner
           cx_tenant: ${{ secrets.CX_TENANT }}
