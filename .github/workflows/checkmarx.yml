@@ -52,7 +52,7 @@ jobs:
         sca_tenant: ${{  secrets.SCA_TENANT }}
         sca_username: ${{ secrets.SCA_USERNAME }}
         sca_password: ${{ secrets.SCA_PASSWORD }}
-        params: --github --checkmarx.settings-override=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --repo=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG --logging.level.org.springframework.web.client.RestTemplate=TRACE --logging.level.org.apache.http.wire=TRACE
+        params: --checkmarx.settings-override=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --repo=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --merge-id=${{ github.event.number }} --logging.level.com.checkmarx.*=DEBUG --logging.level.org.springframework.web.client.RestTemplate=TRACE --logging.level.org.apache.http.wire=TRACE
     # Upload the Report for CodeQL/Security Alerts
     #- name: Upload SARIF file
       #uses: github/codeql-action/upload-sarif@v2
